@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráfica de Datos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #chartdiv {
+      width: 100%;
+      height: 500px;
+      max-width: 800px;
+      margin: 20px 0;
+    }
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .description {
+      max-width: 800px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+</head>
+<body>
+  <button class="btn" onclick="location.href='/crud'">Ir a Gestión de Datos</button>
+  <h1>Gráfica de Distribución de Población por Alcaldía</h1>
+  <div class="description">
+    Esta gráfica circular muestra la distribución de la población en diferentes alcaldías. 
+    Cada sección del círculo representa una alcaldía y el tamaño de cada sección es proporcional 
+    a la población de dicha alcaldía.
+  </div>
+  <div id="chartdiv"></div>
+  <script>
+    am5.ready(async function() {
+      // Crear elemento root
+      var root = am5.Root.new("chartdiv");
+
+      // Establecer temas
+      root.setThemes([ am5themes_Animated.new(root) ]);
+
+      // Crear el gráfico
+      var chart = root.container.children.push(am5percent.PieChart.new(root, {
+        layout: root.verticalLayout,
+        radius: am5.percent(100)
+      }));
+
+      // Crear la serie
+      var series = chart.series.push(am5percent.PieSeries.new(root, {
+        valueField: "poblacion",
+        categoryField: "alcaldia",
+        alignLabels: true,
+        innerRadius: am5.percent(50)
+      }));
+
+      // Obtener datos de la API
+      try {
+        const response = await fetch('/api/datos');
+        const data = await response.json();
+
+        // Configurar datos de la serie
+        series.data.setAll(data);
+
+        // Animación de aparición
+        series.appear(1000, 100);
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      }
+    });
+  </script>
+</body>
+</html>

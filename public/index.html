@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto - Carga de Archivos CSV y Visualización de Datos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Carga de Archivos CSV y Visualización de Datos</h1>
+    
+    <!-- Formulario para carga de archivos -->
+    <form id="uploadForm" enctype="multipart/form-data">
+      <label for="csvFile" class="file-label">
+        <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+        Seleccionar Archivo CSV
+      </label>
+      <button type="submit" class="btn">Cargar Archivo CSV</button>
+    </form>
+    
+    <!-- Sección para mostrar los mensajes de estado -->
+    <div id="message"></div>
+
+    <!-- Sección para mostrar los datos -->
+    <div id="dataSection">
+      <!-- Aquí se mostrarán los datos cargados o los gráficos -->
+    </div>
+
+    <!-- Botones para redirigir -->
+    <div class="button-group">
+      <button class="btn" onclick="location.href='/crud'">Ir a Gestión de Datos</button>
+      <button class="btn" onclick="location.href='/grafica'">Mostrar Gráfica</button>
+    </div>
+  </div>
+
+  <!-- Incluye la biblioteca de AmCharts -->
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+  <!-- Script JavaScript para manejar la carga de archivos y la interacción con la API -->
+  <script src="script.js"></script>
+</body>
+</html>

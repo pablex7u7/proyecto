@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Datos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Gestión de Datos</h1>
+
+    <!-- Formulario para agregar un nuevo dato -->
+    <form id="addForm">
+      <h2>Añadir Nuevo Dato</h2>
+      <label>Alcaldía: <input type="text" id="alcaldia" required></label>
+      <label>Localidad: <input type="text" id="localidad" required></label>
+      <label>Sexo: <input type="text" id="sexo" required></label>
+      <label>Rango de Edad: <input type="text" id="rango_edad" required></label>
+      <label>Población: <input type="number" id="poblacion" required></label>
+      <button type="submit">Añadir</button>
+    </form>
+
+    <!-- Sección para mostrar y gestionar los datos -->
+    <div id="dataSection">
+      <h2>Datos Existentes</h2>
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th>Alcaldía</th>
+            <th>Localidad</th>
+            <th>Sexo</th>
+            <th>Rango de Edad</th>
+            <th>Población</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="crud.js"></script>
+</body>
+</html>
